@@ -7,7 +7,11 @@ export const DEFAULT_STROKE_WIDTH = 0.5;
 export const DEFAULT_HOVER_COLOR = '#303030';
 export const DEFAULT_SELECTED_COLOR = '#ff0000';
 
-export function DefaultHint({ mouseX, mouseY, state }: HintProps) {
+export function DefaultHint<T extends string>({
+  mouseX,
+  mouseY,
+  state
+}: HintProps<T>) {
   return (
     <div
       style={{
