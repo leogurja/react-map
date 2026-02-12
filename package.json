@@ -1,48 +1,24 @@
 {
-  "name": "@gurgelio/react-map",
+  "name": "react-map-monorepo",
   "version": "0.0.1",
-  "description": "A React component for displaying maps of countries and regions",
-  "author": "Leonardo Gurgel",
+  "private": true,
+  "author": "Leonardo Gurgel <leo@gurgel.io>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/leogurja/react-map.git"
-  },
-  "bugs": {
-    "url": "https://github.com/leogurja/react-map/issues"
-  },
-  "homepage": "https://github.com/leogurja/react-map",
-  "keywords": [
-    "react",
-    "map",
-    "country",
-    "region",
-    "world",
-    "maps"
-  ],
+  "description": "A React component for displaying maps of countries and regions",
   "scripts": {
-    "build": "tsdown",
-    "check": "pnpm check:lint && pnpm check:types && knip",
-    "check:lint": "biome check src",
-    "check:types": "tsc",
-    "clean": "rm -rf node_modules $HOME/.cache/biome",
-    "postclean": "pnpm i"
-  },
-  "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/maps/*.js"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "check": "turbo run check",
+    "check:lint": "biome check .",
+    "check:types": "turbo run check:types",
+    "clean": "turbo clean && rm -rf node_modules $HOME/.cache/biome",
+    "postclean": "pnpm i",
+    "knip": "knip"
   },
   "devDependencies": {
+    "turbo": "^2.3.3",
     "@biomejs/biome": "^2.3.14",
-    "@types/react": "^18.2.45",
-    "knip": "^5.83.1",
-    "tsdown": "^0.20.3",
-    "typescript": "^5.3.3"
+    "knip": "^5.83.1"
   },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
-  },
-  "type": "module",
   "packageManager": "pnpm@10.28.0+sha512.05df71d1421f21399e053fde567cea34d446fa02c76571441bfc1c7956e98e363088982d940465fd34480d4d90a0668bc12362f8aa88000a64e83d0b0e47be48"
 }

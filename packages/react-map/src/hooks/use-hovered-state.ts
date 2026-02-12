@@ -1,11 +1,10 @@
 import { type MouseEventHandler, useState } from 'react';
+import type { MapColors } from '../types';
 import { getStateColor } from '../utils/get-state-color';
 
 export function useHoveredState<T extends string>(
   selectedState: T | T[] | null,
-  selectColor: string | Record<T, string>,
-  hoverColor: string | Record<T, string>,
-  stateColor: string | Record<T, string>
+  colors: MapColors<T>
 ) {
   const [hoveredState, setHoveredState] = useState<T | null>(null);
 
@@ -19,7 +18,7 @@ export function useHoveredState<T extends string>(
     setHoveredState(hoveredState);
 
     path.style.fill = getStateColor(
-      isSelected ? selectColor : hoverColor,
+      isSelected ? colors.select : colors.hover,
       hoveredState
     );
   };
@@ -34,7 +33,7 @@ export function useHoveredState<T extends string>(
     setHoveredState(null);
 
     path.style.fill = getStateColor(
-      isSelected ? selectColor : stateColor,
+      isSelected ? colors.select : colors.fill,
       hoveredState
     );
   };

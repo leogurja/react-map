@@ -1,0 +1,11 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "dev": {
+      "with": ["@gurgelio/react-map#dev"]
+    },
+    "check:types": {
+      "dependsOn": ["^build"]
+    }
+  }
+}

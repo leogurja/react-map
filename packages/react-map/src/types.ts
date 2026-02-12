@@ -7,14 +7,17 @@ export type BorderStyle =
   | 'dash-dot'
   | 'dash-double-dot';
 
+export interface MapColors<T extends string> {
+  stroke: string | ((state: T) => string);
+  fill: string | ((state: T) => string);
+  hover: string | ((state: T) => string);
+  select: string | ((state: T) => string);
+}
+
 interface MapProps<T extends string>
-  extends Omit<ComponentProps<'svg'>, 'onSelect'> {
-  size?: number;
-  strokeColor?: string;
+  extends Omit<ComponentProps<'svg'>, 'onSelect' | 'onChange'> {
+  colors: Partial<MapColors<T>>;
   strokeWidth?: number;
-  hoverColor?: string | Record<T, string>;
-  selectColor?: string | Record<T, string>;
-  stateColor?: string | Record<T, string>;
   map: Record<T, string>;
   disableClick?: boolean;
   disableHover?: boolean;
@@ -23,11 +26,15 @@ interface MapProps<T extends string>
 }
 
 export interface SingleSelectMapProps<T extends string> extends MapProps<T> {
-  onSelect?: (state: T | null) => void;
+  value?: T | null;
+  onChange?: (value: T | null) => void;
+  defaultValue?: T | null;
 }
 
 export interface MultipleSelectMapProps<T extends string> extends MapProps<T> {
-  onSelect?: (state: T | null, selectedStates?: T[]) => void;
+  value?: T[];
+  onChange?: (value: T[]) => void;
+  defaultValue?: T[];
 }
 
 export interface HintProps<T extends string> {

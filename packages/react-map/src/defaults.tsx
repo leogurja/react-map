@@ -1,11 +1,13 @@
-import type { HintProps } from './types';
+import type { HintProps, MapColors } from './types';
 
-export const DEFAULT_WIDTH = 500;
-export const DEFAULT_MAP_COLOR = '#ffffff';
-export const DEFAULT_STROKE_COLOR = '#000000';
 export const DEFAULT_STROKE_WIDTH = 0.5;
-export const DEFAULT_HOVER_COLOR = '#303030';
-export const DEFAULT_SELECTED_COLOR = '#ff0000';
+
+export const DEFAULT_COLORS: MapColors<string> = {
+  stroke: 'black',
+  fill: 'white',
+  hover: '#303030',
+  select: '#ff0000'
+};
 
 export function DefaultHint<T extends string>({
   mouseX,
