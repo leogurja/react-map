@@ -1,5 +1,12 @@
 packages:
   - packages/*
 
+allowBuilds:
+  esbuild: true
+
 onlyBuiltDependencies:
   - esbuild
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  - "vite@6.4.1"
+  - "semver@6.3.1"

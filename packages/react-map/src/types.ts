@@ -1,16 +1,6 @@
-import type {
-  ComponentProps,
-  ComponentType,
-  Dispatch,
-  SetStateAction
-} from 'react';
+import type { ComponentProps, ComponentType, Dispatch, SetStateAction } from "react";
 
-export type BorderStyle =
-  | 'solid'
-  | 'dashed'
-  | 'dotted'
-  | 'dash-dot'
-  | 'dash-double-dot';
+export type BorderStyle = "solid" | "dashed" | "dotted" | "dash-dot" | "dash-double-dot";
 
 export interface MapColorParams<T> {
   state: T;
@@ -23,8 +13,7 @@ export interface MapColors<T extends string> {
   fill: string | ((params: MapColorParams<T>) => string);
 }
 
-interface MapProps<T extends string>
-  extends Omit<ComponentProps<'svg'>, 'onSelect' | 'onChange'> {
+interface MapProps<T extends string> extends Omit<ComponentProps<"svg">, "onSelect" | "onChange"> {
   pathClassName?: string;
   colors: Partial<MapColors<T>>;
   strokeWidth?: number;

@@ -1,12 +1,13 @@
-import { type MouseEventHandler, useCallback, useId, useMemo } from 'react';
-import { DEFAULT_COLORS, DEFAULT_STROKE_WIDTH, DefaultHint } from './defaults';
-import { useControllableState } from './hooks/use-controllable-state';
-import { useHoveredState } from './hooks/use-hovered-state';
-import { useMousePosition } from './hooks/use-mouse-position';
-import { useViewbox } from './hooks/use-viewbox';
-import type { MapColors, SingleSelectMapProps } from './types';
-import { getStrokeDasharray } from './utils/get-stroke-dasharray';
-import { parseStateColor } from './utils/parse-state-color';
+import { type MouseEventHandler, useCallback, useId, useMemo } from "react";
+
+import { DEFAULT_COLORS, DEFAULT_STROKE_WIDTH, DefaultHint } from "./defaults";
+import { useControllableState } from "./hooks/use-controllable-state";
+import { useHoveredState } from "./hooks/use-hovered-state";
+import { useMousePosition } from "./hooks/use-mouse-position";
+import { useViewbox } from "./hooks/use-viewbox";
+import type { MapColors, SingleSelectMapProps } from "./types";
+import { getStrokeDasharray } from "./utils/get-stroke-dasharray";
+import { parseStateColor } from "./utils/parse-state-color";
 
 export function SingleSelectMap<T extends string>({
   colors,
@@ -26,9 +27,9 @@ export function SingleSelectMap<T extends string>({
   const parsedColors: MapColors<T> = useMemo(
     () => ({
       ...DEFAULT_COLORS,
-      ...colors
+      ...colors,
     }),
-    [colors]
+    [colors],
   );
 
   const instanceId = useId();
@@ -36,11 +37,10 @@ export function SingleSelectMap<T extends string>({
   const [selectedState, setSelectedState] = useControllableState({
     value,
     onChange,
-    defaultValue
+    defaultValue,
   });
   const { ref, viewBox } = useViewbox(map);
-  const { hoveredState, handleMouseEnter, handleMouseLeave } =
-    useHoveredState<T>();
+  const { hoveredState, handleMouseEnter, handleMouseLeave } = useHoveredState<T>();
 
   const states = useMemo(() => Object.keys(map) as T[], [map]);
 
@@ -51,18 +51,18 @@ export function SingleSelectMap<T extends string>({
 
       setSelectedState?.(selectedState === currentState ? null : currentState);
     },
-    [selectedState, setSelectedState]
+    [selectedState, setSelectedState],
   );
 
   return (
     <>
-      {/** biome-ignore lint/a11y/noSvgWithoutTitle: no title is needed */}
+      {/** Biome-ignore lint/a11y/noSvgWithoutTitle: no title is needed */}
       <svg
         version="1.1"
         ref={ref}
         viewBox={viewBox}
         className={className}
-        style={className ? undefined : { width: '100%', height: '100%' }}
+        style={className ? undefined : { width: "100%", height: "100%" }}
         {...rest}
       >
         {states?.map((state) => {
@@ -72,7 +72,7 @@ export function SingleSelectMap<T extends string>({
           const colorParams = {
             state,
             isHovered,
-            isSelected
+            isSelected,
           };
 
           return (
@@ -91,8 +91,9 @@ export function SingleSelectMap<T extends string>({
               style={{
                 fill: parseStateColor(parsedColors.fill, colorParams),
                 stroke: parseStateColor(parsedColors.stroke, colorParams),
-                cursor: disableClick ? 'default' : 'pointer',
-                strokeDasharray: getStrokeDasharray(borderStyle)
+                strokeWidth,
+                cursor: disableClick ? "default" : "pointer",
+                strokeDasharray: getStrokeDasharray(borderStyle),
               }}
             />
           );

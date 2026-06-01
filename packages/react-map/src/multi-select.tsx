@@ -1,12 +1,13 @@
-import { type MouseEventHandler, useCallback, useMemo } from 'react';
-import { DEFAULT_COLORS, DEFAULT_STROKE_WIDTH, DefaultHint } from './defaults';
-import { useControllableState } from './hooks/use-controllable-state';
-import { useHoveredState } from './hooks/use-hovered-state';
-import { useMousePosition } from './hooks/use-mouse-position';
-import { useViewbox } from './hooks/use-viewbox';
-import type { MultipleSelectMapProps } from './types';
-import { getStrokeDasharray } from './utils/get-stroke-dasharray';
-import { parseStateColor } from './utils/parse-state-color';
+import { type MouseEventHandler, useCallback, useMemo } from "react";
+
+import { DEFAULT_COLORS, DEFAULT_STROKE_WIDTH, DefaultHint } from "./defaults";
+import { useControllableState } from "./hooks/use-controllable-state";
+import { useHoveredState } from "./hooks/use-hovered-state";
+import { useMousePosition } from "./hooks/use-mouse-position";
+import { useViewbox } from "./hooks/use-viewbox";
+import type { MultipleSelectMapProps } from "./types";
+import { getStrokeDasharray } from "./utils/get-stroke-dasharray";
+import { parseStateColor } from "./utils/parse-state-color";
 
 export function MultiSelectMap<T extends string>({
   colors,
@@ -25,20 +26,19 @@ export function MultiSelectMap<T extends string>({
   const parsedColors = useMemo(
     () => ({
       ...DEFAULT_COLORS,
-      ...colors
+      ...colors,
     }),
-    [colors]
+    [colors],
   );
 
   const { x, y } = useMousePosition();
   const [selectedStates, setSelectedStates] = useControllableState({
     value,
     onChange,
-    defaultValue
+    defaultValue,
   });
   const { ref, viewBox } = useViewbox(map);
-  const { hoveredState, handleMouseEnter, handleMouseLeave } =
-    useHoveredState<T>();
+  const { hoveredState, handleMouseEnter, handleMouseLeave } = useHoveredState<T>();
   const states = useMemo(() => Object.keys(map) as T[], [map]);
 
   const handleClick = useCallback<MouseEventHandler<SVGPathElement>>(
@@ -49,21 +49,21 @@ export function MultiSelectMap<T extends string>({
       setSelectedStates?.(
         selectedStates.includes(currentState)
           ? selectedStates.filter((s) => s !== currentState)
-          : [...selectedStates, currentState]
+          : [...selectedStates, currentState],
       );
     },
-    [selectedStates, setSelectedStates]
+    [selectedStates, setSelectedStates],
   );
 
   return (
     <>
-      {/** biome-ignore lint/a11y/noSvgWithoutTitle: no title is needed */}
+      {/** Biome-ignore lint/a11y/noSvgWithoutTitle: no title is needed */}
       <svg
         version="1.1"
         ref={ref}
         viewBox={viewBox}
         className={className}
-        style={className ? undefined : { width: '100%', height: '100%' }}
+        style={className ? undefined : { width: "100%", height: "100%" }}
         {...rest}
       >
         {states?.map((code) => {
@@ -73,7 +73,7 @@ export function MultiSelectMap<T extends string>({
           const colorParams = {
             state: code,
             isHovered,
-            isSelected
+            isSelected,
           };
 
           return (
@@ -90,16 +90,15 @@ export function MultiSelectMap<T extends string>({
               style={{
                 fill: parseStateColor(parsedColors.fill, colorParams),
                 stroke: parseStateColor(parsedColors.stroke, colorParams),
-                cursor: disableClick ? 'default' : 'pointer',
-                strokeDasharray: getStrokeDasharray(borderStyle)
+                strokeWidth,
+                cursor: disableClick ? "default" : "pointer",
+                strokeDasharray: getStrokeDasharray(borderStyle),
               }}
             />
           );
         })}
       </svg>
-      {hoveredState && (
-        <HintComponent mouseX={x} mouseY={y} state={hoveredState} />
-      )}
+      {hoveredState && <HintComponent mouseX={x} mouseY={y} state={hoveredState} />}
     </>
   );
 }

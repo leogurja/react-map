@@ -1,8 +1,8 @@
-import type { MapColorParams } from '../types';
+import type { MapColorParams } from "../types";
 
 export function parseStateColor<T extends string>(
   color: string | ((params: MapColorParams<T>) => string),
-  params: MapColorParams<T>
+  params: MapColorParams<T>,
 ) {
-  return typeof color === 'string' ? color : color(params);
+  return typeof color === "string" ? color : color(params);
 }

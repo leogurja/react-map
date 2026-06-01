@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface UseControllableStateProps<T> {
   value?: T | undefined;
@@ -9,7 +9,7 @@ interface UseControllableStateProps<T> {
 export function useControllableState<T>({
   value: externalValue,
   onChange,
-  defaultValue
+  defaultValue,
 }: UseControllableStateProps<T>) {
   const lastIsControlled = useRef<boolean>(externalValue !== undefined);
   const [value, setValue] = useState(externalValue ?? defaultValue);
@@ -19,7 +19,7 @@ export function useControllableState<T>({
       setValue(value);
       onChange?.(value);
     },
-    [onChange]
+    [onChange],
   );
 
   useEffect(() => {

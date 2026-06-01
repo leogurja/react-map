@@ -3,3 +3,4 @@ dist/
 output.ts
 storybook-static/
 .turbo
+.vscode
