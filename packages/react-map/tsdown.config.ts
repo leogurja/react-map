@@ -1,8 +1,6 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  shims: true,
-  skipNodeModulesBundle: true,
   minify: true,
   dts: true,
   platform: "browser",

@@ -1,36 +1,28 @@
-import { type MouseEventHandler, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
-import { DEFAULT_COLORS, DEFAULT_STROKE_WIDTH, DefaultHint } from "./defaults";
+import { defaultPathStyle, DefaultHint } from "./defaults";
 import { useControllableState } from "./hooks/use-controllable-state";
 import { useHoveredState } from "./hooks/use-hovered-state";
+import { useMergeRefs } from "./hooks/use-merge-refs";
 import { useMousePosition } from "./hooks/use-mouse-position";
 import { useViewbox } from "./hooks/use-viewbox";
 import type { MultipleSelectMapProps } from "./types";
-import { getStrokeDasharray } from "./utils/get-stroke-dasharray";
-import { parseStateColor } from "./utils/parse-state-color";
 
 export function MultiSelectMap<T extends string>({
-  colors,
-  strokeWidth = DEFAULT_STROKE_WIDTH,
   value,
   onChange,
   defaultValue = [],
   map,
   disableClick,
   disableHover,
-  borderStyle,
+  pathClassName,
+  pathStyle,
   HintComponent = DefaultHint,
   className,
+  style,
+  ref: externalRef,
   ...rest
 }: MultipleSelectMapProps<T>) {
-  const parsedColors = useMemo(
-    () => ({
-      ...DEFAULT_COLORS,
-      ...colors,
-    }),
-    [colors],
-  );
-
   const { x, y } = useMousePosition();
   const [selectedStates, setSelectedStates] = useControllableState({
     value,
@@ -41,8 +33,8 @@ export function MultiSelectMap<T extends string>({
   const { hoveredState, handleMouseEnter, handleMouseLeave } = useHoveredState<T>();
   const states = useMemo(() => Object.keys(map) as T[], [map]);
 
-  const handleClick = useCallback<MouseEventHandler<SVGPathElement>>(
-    (event) => {
+  const handleClick = useCallback(
+    (event: React.MouseEvent<SVGPathElement>) => {
       const path = event.target as SVGPathElement;
       const currentState = path.dataset.state as T;
 
@@ -55,18 +47,19 @@ export function MultiSelectMap<T extends string>({
     [selectedStates, setSelectedStates],
   );
 
+  const mergedRef = useMergeRefs(ref, externalRef);
+
   return (
     <>
-      {/** Biome-ignore lint/a11y/noSvgWithoutTitle: no title is needed */}
       <svg
+        {...rest}
         version="1.1"
-        ref={ref}
+        ref={mergedRef}
         viewBox={viewBox}
         className={className}
-        style={className ? undefined : { width: "100%", height: "100%" }}
-        {...rest}
+        style={className ? style : { width: "100%", height: "100%", ...style }}
       >
-        {states?.map((code) => {
+        {states.map((code) => {
           const isHovered = hoveredState === code;
           const isSelected = selectedStates.includes(code);
 
@@ -76,29 +69,33 @@ export function MultiSelectMap<T extends string>({
             isSelected,
           };
 
+          const resolvedClassName =
+            typeof pathClassName === "function" ? pathClassName(colorParams) : pathClassName;
+          const resolvedStyle =
+            typeof pathStyle === "function" ? pathStyle(colorParams) : pathStyle;
+
           return (
-            // biome-ignore lint/a11y/noStaticElementInteractions: has to be a path
             <path
               key={code}
               onClick={disableClick ? undefined : handleClick}
               data-state={code}
               data-hovered={isHovered}
               data-selected={isSelected}
+              className={resolvedClassName}
               onMouseEnter={disableHover ? undefined : handleMouseEnter}
               onMouseLeave={disableHover ? undefined : handleMouseLeave}
               d={map[code]}
               style={{
-                fill: parseStateColor(parsedColors.fill, colorParams),
-                stroke: parseStateColor(parsedColors.stroke, colorParams),
-                strokeWidth,
-                cursor: disableClick ? "default" : "pointer",
-                strokeDasharray: getStrokeDasharray(borderStyle),
+                ...defaultPathStyle(colorParams),
+                ...resolvedStyle,
               }}
             />
           );
         })}
       </svg>
-      {hoveredState && <HintComponent mouseX={x} mouseY={y} state={hoveredState} />}
+      {HintComponent != null && hoveredState && (
+        <HintComponent mouseX={x} mouseY={y} state={hoveredState} />
+      )}
     </>
   );
 }

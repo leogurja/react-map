@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "changesets": true,
+  "tags": ["-lintignore"],
+  "workspaces": {
+    "apps/docs": {
+      "entry": ["source.config.ts!"],
+      "ignoreDependencies": ["tailwindcss"]
+    },
+    "packages/react-map": {
+      "ignoreDependencies": ["react-dom"]
+    }
+  }
+}

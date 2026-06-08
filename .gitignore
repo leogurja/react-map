@@ -1,6 +1,12 @@
 node_modules/
 dist/
-output.ts
-storybook-static/
 .turbo
 .vscode
+.next
+/coverage
+*.tsbuildinfo
+.source
+.DS_Store
+*.pem
+next-env.d.ts
+.pnpm-store/

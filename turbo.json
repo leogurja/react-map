@@ -8,13 +8,12 @@
       "outputLogs": "new-only"
     },
     "//#lint": {
-      "dependsOn": ["^transit"],
       "outputLogs": "new-only"
     },
     "build": {
       "dependsOn": ["^build"],
       "outputLogs": "new-only",
-      "outputs": ["dist/**", "storybook-static/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "check": {
       "dependsOn": ["typecheck", "//#lint", "//#format", "//#knip"]
@@ -28,8 +27,12 @@
     },
     "transit": {},
     "typecheck": {
-      "dependsOn": ["^transit"],
+      "dependsOn": ["^transit", "typegen"],
       "outputLogs": "new-only"
+    },
+    "typegen": {
+      "inputs": ["src/app/**/{page,layout,route}.tsx", "next.config.ts"],
+      "outputs": [".next/types/**", ".next/dev/types/**"]
     }
   }
 }

@@ -6,8 +6,14 @@
   "env": {
     "builtin": true
   },
+  "options": {
+    "reportUnusedDisableDirectives": "warn",
+    "typeAware": true,
+    "typeCheck": true
+  },
   "plugins": [
-    "typescript",
+    "eslint",
+    "import",
     "unicorn",
     "oxc",
     "react",
@@ -17,8 +23,7 @@
     "vitest",
     "promise",
     "jsdoc",
-    "import",
-    "eslint"
+    "nextjs"
   ],
   "rules": {}
 }

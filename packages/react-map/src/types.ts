@@ -1,27 +1,19 @@
-import type { ComponentProps, ComponentType, Dispatch, SetStateAction } from "react";
-
-export type BorderStyle = "solid" | "dashed" | "dotted" | "dash-dot" | "dash-double-dot";
-
-export interface MapColorParams<T> {
+export interface PathParams<T extends string = string> {
   state: T;
   isHovered: boolean;
   isSelected: boolean;
 }
 
-export interface MapColors<T extends string> {
-  stroke: string | ((params: MapColorParams<T>) => string);
-  fill: string | ((params: MapColorParams<T>) => string);
-}
-
-interface MapProps<T extends string> extends Omit<ComponentProps<"svg">, "onSelect" | "onChange"> {
-  pathClassName?: string;
-  colors: Partial<MapColors<T>>;
-  strokeWidth?: number;
+interface MapProps<T extends string> extends Omit<
+  React.ComponentProps<"svg">,
+  "onSelect" | "onChange"
+> {
+  pathClassName?: string | ((params: PathParams<T>) => string);
+  pathStyle?: React.CSSProperties | ((params: PathParams<T>) => React.CSSProperties);
   map: Record<T, string>;
   disableClick?: boolean;
   disableHover?: boolean;
-  borderStyle?: BorderStyle;
-  HintComponent?: ComponentType<HintProps<T>>;
+  HintComponent?: React.ComponentType<HintProps<T>> | null;
 }
 
 export interface SingleSelectMapProps<T extends string> extends MapProps<T> {
@@ -32,7 +24,7 @@ export interface SingleSelectMapProps<T extends string> extends MapProps<T> {
 
 export interface MultipleSelectMapProps<T extends string> extends MapProps<T> {
   value?: T[];
-  onChange?: Dispatch<SetStateAction<T[]>>;
+  onChange?: React.Dispatch<React.SetStateAction<T[]>>;
   defaultValue?: T[];
 }
 

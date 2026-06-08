@@ -1,11 +1,12 @@
-import type { HintProps, MapColors } from "./types";
+import type { HintProps, PathParams } from "./types";
 
-export const DEFAULT_STROKE_WIDTH = 0.5;
-
-export const DEFAULT_COLORS: MapColors<string> = {
-  stroke: "black",
-  fill: ({ isHovered, isSelected }) => (isHovered ? "#303030" : isSelected ? "#ff0000" : "white"),
-};
+export function defaultPathStyle({ isHovered, isSelected }: PathParams): React.CSSProperties {
+  return {
+    fill: isHovered ? "#303030" : isSelected ? "#ff0000" : "white",
+    stroke: "black",
+    strokeWidth: 0.5,
+  };
+}
 
 export function DefaultHint<T extends string>({ mouseX, mouseY, state }: HintProps<T>) {
   return (

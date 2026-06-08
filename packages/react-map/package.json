@@ -25,17 +25,18 @@
   "sideEffects": false,
   "exports": {
     ".": "./dist/index.js",
-    "./*": "./dist/maps/*.js"
+    "./*": "./dist/maps/*.js",
+    "./maps": "./dist/maps/index.js"
   },
   "scripts": {
     "build": "tsdown",
     "clean": "rm -rf node_modules dist .turbo",
     "dev": "tsdown --watch",
-    "prepare": "turbo run build",
+    "prepack": "turbo run build",
     "typecheck": "tsc"
   },
   "devDependencies": {
-    "@types/react": "^19.2.15",
+    "@types/react": "^19.2.16",
     "tsdown": "^0.22.1",
     "typescript": "^6.0.3"
   },
