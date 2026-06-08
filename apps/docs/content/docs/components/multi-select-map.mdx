@@ -1,0 +1,31 @@
+---
+title: MultiSelectMap
+description: Select multiple regions
+---
+
+`MultiSelectMap` shares the same styling and interaction props as `SingleSelectMap`, but maintains an **array** of selected regions.
+
+## Props
+
+| Prop                 | Description                        |
+| -------------------- | ---------------------------------- |
+| `value` / `onChange` | `T[]` — controlled list of regions |
+| `defaultValue`       | Initial selection (default `[]`)   |
+
+`onChange` accepts a React state updater (`SetStateAction<T[]>`), so you can append or filter in functional updates.
+
+## Example
+
+```tsx
+import { MultiSelectMap } from "@gurgelio/react-map";
+import world, { type WorldStates } from "@gurgelio/react-map/world";
+import { useState } from "react";
+
+export function MultiWorld() {
+  const [countries, setCountries] = useState<WorldStates[]>([]);
+
+  return <MultiSelectMap map={world} value={countries} onChange={setCountries} colors={{}} />;
+}
+```
+
+See the [kitchen sink](/docs/examples/kitchen-sink) example for multi-select with dynamic colors and a custom hint.

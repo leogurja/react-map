@@ -1,0 +1,34 @@
+---
+title: SingleSelectMap
+description: Selecione uma região por vez
+---
+
+O `SingleSelectMap` renderiza um mapa SVG: um clique seleciona a região; outro clique na mesma região limpa a seleção.
+
+## Props
+
+| Prop                 | Descrição                                                             |
+| -------------------- | --------------------------------------------------------------------- |
+| `map`                | `Record<T, string>` — id da região para o path SVG `d`                |
+| `value` / `onChange` | Região selecionada controlada ou `null`                               |
+| `defaultValue`       | Valor inicial não controlado (padrão `null`)                          |
+| `colors`             | `{ fill, stroke }` parcial — veja [Cores](/docs/configuration/colors) |
+| `HintComponent`      | Tooltip customizado — veja [Hint](/docs/configuration/hint-component) |
+
+## Exemplo
+
+<SimpleDemo />
+
+```tsx
+import { SingleSelectMap } from "@gurgelio/react-map";
+import world, { type WorldStates } from "@gurgelio/react-map/world";
+import { useState } from "react";
+
+export function SeletorMundo() {
+  const [country, setCountry] = useState<WorldStates | null>(null);
+
+  return <SingleSelectMap map={world} value={country} onChange={setCountry} colors={{}} />;
+}
+```
+
+Selecionar a região já ativa chama `onChange(null)`.

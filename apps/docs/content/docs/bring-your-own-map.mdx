@@ -1,0 +1,26 @@
+---
+title: Bring your own map
+description: Use custom SVG path data
+---
+
+Any map is a record of region names to path strings. Export paths from design tools (Figma, Illustrator) or simplify GeoJSON with a pipeline.
+
+```tsx
+const regions = {
+  North: "M20,20 L80,20 ...",
+  Central: "M20,55 ...",
+  South: "M20,90 ...",
+} as const;
+
+<SingleSelectMap map={regions} colors={{ fill: "#e2e8f0", stroke: "#64748b" }} />;
+```
+
+<ByomDemo />
+
+**Tips**
+
+- Keep keys stable — they are the public API for selection state.
+- Paths should share a coherent coordinate system; viewBox is derived from `getBBox()`.
+- For large maps, split files and lazy-load to reduce bundle size.
+
+Bundled maps in the package follow the same shape, so switching from `world` to your own data is a one-prop change.

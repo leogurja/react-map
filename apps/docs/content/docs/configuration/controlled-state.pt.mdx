@@ -1,0 +1,16 @@
+---
+title: Estado controlado
+description: value, onChange e defaultValue
+---
+
+**Seleção única**
+
+- Controlado: `value` + `onChange(valor | null)`
+- Não controlado: `defaultValue`
+
+**Seleção múltipla**
+
+- Controlado: `value` + `onChange(T[] | atualizador)`
+- Não controlado: `defaultValue` (padrão `[]`)
+
+Prefira modo controlado para sincronizar com URL, formulários ou estado global.

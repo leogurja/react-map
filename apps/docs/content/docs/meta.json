@@ -1,0 +1,14 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "index",
+    "installation",
+    "---Components",
+    "components",
+    "---Configuration",
+    "configuration",
+    "bring-your-own-map",
+    "---Examples",
+    "examples"
+  ]
+}

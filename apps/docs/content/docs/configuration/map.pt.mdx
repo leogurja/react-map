@@ -1,0 +1,17 @@
+---
+title: Prop map
+description: Chaves de região e dados de path SVG
+---
+
+A prop obrigatória `map` é um objeto:
+
+```ts
+type MapData<T extends string> = Record<T, string>;
+```
+
+- **Chaves** — identificadores usados em `data-state` e nos callbacks.
+- **Valores** — strings do atributo `d` do path SVG.
+
+Importe mapas do pacote em `@gurgelio/react-map/<país>`. As chaves devem coincidir com o arquivo.
+
+Para geometria própria, veja [Traga seu mapa](/docs/bring-your-own-map).

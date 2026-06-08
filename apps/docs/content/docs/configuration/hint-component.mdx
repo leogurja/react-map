@@ -1,0 +1,24 @@
+---
+title: Hint component
+description: Tooltips on hover
+---
+
+When hover is enabled, the library renders `HintComponent` with:
+
+```ts
+interface HintProps<T> {
+  mouseX: number;
+  mouseY: number;
+  state: T;
+}
+```
+
+Default hint shows the region name. Pass a custom component for rich tooltips:
+
+```tsx
+<SingleSelectMap map={world} HintComponent={CountryHint} colors={{}} />
+```
+
+<KitchenSinkDemo />
+
+The demo uses population, HDI, and area from bundled sample stats. Position hints with `position: fixed` and `left` / `top` from `mouseX` / `mouseY`.

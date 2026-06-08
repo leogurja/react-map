@@ -1,0 +1,40 @@
+---
+title: Installation
+description: Add @gurgelio/react-map to your project
+---
+
+## Package manager
+
+```npm
+npm install @gurgelio/react-map
+```
+
+**React** and **React DOM** 16.8 or later must already be in your project — they are peer dependencies and are not bundled with this package.
+
+## Importing maps
+
+The main entry re-exports components only. Import map data from subpaths:
+
+```tsx
+import { SingleSelectMap } from "@gurgelio/react-map";
+import world, { type WorldStates } from "@gurgelio/react-map/world";
+// or use the barrel file:
+// import { world, type WorldStates } from "@gurgelio/react-map/maps";
+```
+
+Each map file exports a `Record<RegionName, pathData>` object keyed by **English region labels** (for the world map, country names match the bundled dataset).
+
+## TypeScript
+
+Region names are inferred from the map object. Constrain selection state with the exported state type:
+
+```tsx
+import { SingleSelectMap } from "@gurgelio/react-map";
+import world, { type WorldStates } from "@gurgelio/react-map/world";
+
+const [country, setCountry] = useState<WorldStates | null>(null);
+```
+
+## Next.js / RSC
+
+Map components use client-only hooks (mouse position, selection). Mark the parent file with `'use client'` or render demos inside a client boundary.

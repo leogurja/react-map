@@ -1,0 +1,25 @@
+---
+title: Colors
+description: Fill and stroke per region
+---
+
+`colors` accepts optional `fill` and `stroke`. Each can be a **string** or a **function**:
+
+```ts
+type MapColorParams<T> = {
+  state: T;
+  isHovered: boolean;
+  isSelected: boolean;
+};
+
+colors={{
+  fill: ({ state, isSelected }) => (isSelected ? '#2563eb' : '#e2e8f0'),
+  stroke: '#64748b',
+}}
+```
+
+Functions run per path on each render, so you can drive choropleths from external data.
+
+<TailwindDemo />
+
+You can also style via `pathClassName` and Tailwind `data-[selected=true]:` variants — see [Tailwind example](/docs/examples/tailwind).

@@ -1,0 +1,13 @@
+{
+  "title": "Configuração",
+  "pages": [
+    "index",
+    "map",
+    "colors",
+    "stroke-and-borders",
+    "interaction",
+    "hint-component",
+    "controlled-state",
+    "svg-props"
+  ]
+}

@@ -1,0 +1,16 @@
+---
+title: Controlled state
+description: value, onChange, and defaultValue
+---
+
+**Single select**
+
+- Controlled: `value` + `onChange(value | null)`
+- Uncontrolled: `defaultValue` (optional)
+
+**Multi select**
+
+- Controlled: `value` + `onChange(T[] | updater)`
+- Uncontrolled: `defaultValue` (default `[]`)
+
+Internal state uses the same controllable pattern as React inputs. Prefer controlled mode when syncing with URL params, forms, or global stores.

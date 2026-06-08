@@ -1,0 +1,40 @@
+---
+title: Instalação
+description: Adicione @gurgelio/react-map ao seu projeto
+---
+
+## Gerenciador de pacotes
+
+```npm
+npm install @gurgelio/react-map
+```
+
+**React** e **React DOM** 16.8 ou superior já devem estar no seu projeto — são peer dependencies e não vêm incluídos neste pacote.
+
+## Importando mapas
+
+A entrada principal exporta apenas os componentes. Importe os dados do mapa por subcaminho:
+
+```tsx
+import { SingleSelectMap } from "@gurgelio/react-map";
+import world, { type WorldStates } from "@gurgelio/react-map/world";
+// ou use o barrel file:
+// import { world, type WorldStates } from "@gurgelio/react-map/maps";
+```
+
+Cada arquivo de mapa é um `Record<nomeDaRegião, pathData>`. No mapa mundial, os nomes dos países seguem os rótulos em inglês do dataset.
+
+## TypeScript
+
+Os nomes das regiões são inferidos do objeto do mapa:
+
+```tsx
+import { SingleSelectMap } from "@gurgelio/react-map";
+import world, { type WorldStates } from "@gurgelio/react-map/world";
+
+const [country, setCountry] = useState<WorldStates | null>(null);
+```
+
+## Next.js / RSC
+
+Os componentes usam hooks do cliente (mouse, seleção). Use `'use client'` no arquivo pai ou renderize dentro de um boundary cliente.

@@ -1,0 +1,15 @@
+---
+title: SVG props
+description: className, pathClassName, and native SVG attributes
+---
+
+Extra props spread onto the root `<svg>` (except `onSelect` / `onChange`):
+
+| Prop            | Target                                   |
+| --------------- | ---------------------------------------- |
+| `className`     | Root `<svg>` — set explicit size via CSS |
+| `pathClassName` | Each `<path>`                            |
+
+Without `className`, the SVG uses `width/height: 100%` inline. Wrap the map in a sized container for aspect ratio control.
+
+`viewBox` is computed automatically from path bounds after mount.

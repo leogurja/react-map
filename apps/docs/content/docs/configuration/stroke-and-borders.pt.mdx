@@ -1,0 +1,15 @@
+---
+title: Traço e bordas
+description: strokeWidth e borderStyle
+---
+
+| Prop          | Padrão  | Descrição                         |
+| ------------- | ------- | --------------------------------- |
+| `strokeWidth` | `0.5`   | Espessura do contorno             |
+| `borderStyle` | `solid` | Padrão de tracejado entre regiões |
+
+Valores de `borderStyle`: `solid`, `dashed`, `dotted`, `dash-dot`, `dash-double-dot`.
+
+```tsx
+<MultiSelectMap map={world} borderStyle="dash-dot" strokeWidth={0.75} colors={{}} />
+```

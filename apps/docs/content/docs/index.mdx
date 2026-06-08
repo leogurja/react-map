@@ -1,0 +1,29 @@
+---
+title: Introduction
+description: Interactive SVG maps for React applications
+---
+
+**@gurgelio/react-map** provides `SingleSelectMap` and `MultiSelectMap` components built on SVG paths. Pick a bundled country or world map, or pass your own geometry.
+
+## Features
+
+- Single and multi selection with controlled or uncontrolled state
+- Per-region fill and stroke via static values or functions
+- Optional hover hints and custom hint components
+- Border styles, stroke width, and extra SVG props
+- Tree-shakeable map modules (`@gurgelio/react-map/world`, `@gurgelio/react-map/brazil`, …)
+
+## Quick start
+
+```tsx
+import { SingleSelectMap } from "@gurgelio/react-map";
+import world from "@gurgelio/react-map/world";
+
+export function App() {
+  return <SingleSelectMap map={world} colors={{}} />;
+}
+```
+
+<SimpleDemo />
+
+See [Installation](/docs/installation) to add the package, then explore [Components](/docs/components/single-select-map) and [Configuration](/docs/configuration).

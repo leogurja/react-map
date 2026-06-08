@@ -1,0 +1,38 @@
+---
+title: SingleSelectMap
+description: Select one region at a time
+---
+
+`SingleSelectMap` renders an SVG map where clicking a region selects it; clicking again clears the selection.
+
+## Props
+
+| Prop                 | Description                                                                     |
+| -------------------- | ------------------------------------------------------------------------------- |
+| `map`                | `Record<T, string>` — region id to SVG `d` path                                 |
+| `value` / `onChange` | Controlled selected region or `null`                                            |
+| `defaultValue`       | Uncontrolled initial selection (default `null`)                                 |
+| `colors`             | Partial `{ fill, stroke }` — see [Colors](/docs/configuration/colors)           |
+| `HintComponent`      | Custom hover tooltip — see [Hint component](/docs/configuration/hint-component) |
+
+## Example
+
+<SimpleDemo />
+
+```tsx
+import { SingleSelectMap } from "@gurgelio/react-map";
+import { brazil, type BrazilStates } from "@gurgelio/react-map/maps";
+import { useState } from "react";
+
+export function BrazilPicker() {
+  const [state, setState] = useState<BrazilStates | null>(null);
+
+  return (
+    <div className="w-full rounded-lg border bg-fd-card p-2">
+      <SingleSelectMap map={brazil} value={state} onChange={setState} colors={{}} />
+    </div>
+  );
+}
+```
+
+Toggle behavior: selecting the active region again calls `onChange(null)`.

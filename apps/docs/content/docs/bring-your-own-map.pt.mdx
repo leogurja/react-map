@@ -1,0 +1,26 @@
+---
+title: Traga seu próprio mapa
+description: Use dados de path SVG customizados
+---
+
+Qualquer mapa é um objeto de nomes de região para strings de path. Exporte paths do Figma/Illustrator ou converta GeoJSON no seu pipeline.
+
+```tsx
+const regions = {
+  North: "M20,20 L80,20 ...",
+  Central: "M20,55 ...",
+  South: "M20,90 ...",
+} as const;
+
+<SingleSelectMap map={regions} colors={{ fill: "#e2e8f0", stroke: "#64748b" }} />;
+```
+
+<ByomDemo />
+
+**Dicas**
+
+- Mantenha chaves estáveis — elas são a API pública do estado.
+- Paths no mesmo sistema de coordenadas; o viewBox vem de `getBBox()`.
+- Mapas grandes: divida arquivos e carregue sob demanda.
+
+Os mapas do pacote seguem o mesmo formato — trocar `world` pelo seu objeto é mudar uma prop.

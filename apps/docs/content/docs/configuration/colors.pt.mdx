@@ -1,0 +1,19 @@
+---
+title: Cores
+description: Preenchimento e contorno por região
+---
+
+`colors` aceita `fill` e `stroke` opcionais, como **string** ou **função**:
+
+```ts
+colors={{
+  fill: ({ isSelected }) => (isSelected ? '#2563eb' : '#e2e8f0'),
+  stroke: '#64748b',
+}}
+```
+
+As funções recebem `state`, `isHovered` e `isSelected` — útil para mapas coropléticos.
+
+<TailwindDemo />
+
+Também é possível usar `pathClassName` com Tailwind — veja [exemplo Tailwind](/docs/examples/tailwind).

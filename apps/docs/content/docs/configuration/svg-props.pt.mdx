@@ -1,0 +1,15 @@
+---
+title: Props SVG
+description: className, pathClassName e atributos nativos
+---
+
+Props extras vão para o `<svg>` raiz:
+
+| Prop            | Alvo                             |
+| --------------- | -------------------------------- |
+| `className`     | `<svg>` — defina tamanho via CSS |
+| `pathClassName` | Cada `<path>`                    |
+
+Sem `className`, o SVG usa `width/height: 100%`. Envolva em um container com proporção desejada.
+
+O `viewBox` é calculado automaticamente pelos bounds dos paths.

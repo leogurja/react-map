@@ -1,0 +1,18 @@
+---
+title: Estilo com Tailwind
+description: Estilize paths com classes utilitárias
+---
+
+Use `pathClassName` com os atributos `data-hovered` e `data-selected` nos paths:
+
+<TailwindDemo />
+
+```tsx
+<SingleSelectMap
+  map={world}
+  pathClassName="fill-slate-200 stroke-slate-400 hover:fill-sky-300 data-[selected=true]:fill-sky-600"
+  colors={{}}
+/>
+```
+
+Mantenha `colors={{}}` para mesclar os padrões da biblioteca.

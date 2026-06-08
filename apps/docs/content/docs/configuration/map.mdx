@@ -1,0 +1,17 @@
+---
+title: Map prop
+description: Region keys and SVG path data
+---
+
+The required `map` prop is a plain object:
+
+```ts
+type MapData<T extends string> = Record<T, string>;
+```
+
+- **Keys** — region identifiers shown in `data-state` and passed to callbacks.
+- **Values** — SVG path `d` attribute strings.
+
+Import bundled maps from `@gurgelio/react-map/<country>` (e.g. `world`, `brazil`). Keys must match the bundled file exactly.
+
+For custom geometry, see [Bring your own map](/docs/bring-your-own-map).

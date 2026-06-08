@@ -1,0 +1,24 @@
+---
+title: Componente hint
+description: Tooltips ao passar o mouse
+---
+
+Com hover ativo, o `HintComponent` recebe:
+
+```ts
+interface HintProps<T> {
+  mouseX: number;
+  mouseY: number;
+  state: T;
+}
+```
+
+O hint padrão mostra o nome da região. Passe um componente customizado:
+
+```tsx
+<SingleSelectMap map={world} HintComponent={CountryHint} colors={{}} />
+```
+
+<KitchenSinkDemo />
+
+O demo usa população, IDH e área de amostra. Posicione com `position: fixed` e `mouseX` / `mouseY`.

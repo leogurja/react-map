@@ -1,0 +1,18 @@
+---
+title: Tailwind styling
+description: Style paths with utility classes
+---
+
+Use `pathClassName` with `data-[hovered]` / `data-[selected]` attributes set on each path:
+
+<TailwindDemo />
+
+```tsx
+<SingleSelectMap
+  map={world}
+  pathClassName="fill-slate-200 stroke-slate-400 transition-colors hover:fill-sky-300 data-[selected=true]:fill-sky-600"
+  colors={{}}
+/>
+```
+
+Keep `colors={{}}` so defaults still merge; class-based fill can override paint when specificity allows.

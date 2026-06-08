@@ -1,0 +1,15 @@
+---
+title: Stroke and borders
+description: strokeWidth and borderStyle
+---
+
+| Prop          | Default | Description                   |
+| ------------- | ------- | ----------------------------- |
+| `strokeWidth` | `0.5`   | SVG stroke width on each path |
+| `borderStyle` | `solid` | Dash pattern between regions  |
+
+`borderStyle` values: `solid`, `dashed`, `dotted`, `dash-dot`, `dash-double-dot`.
+
+```tsx
+<MultiSelectMap map={world} borderStyle="dash-dot" strokeWidth={0.75} colors={{}} />
+```

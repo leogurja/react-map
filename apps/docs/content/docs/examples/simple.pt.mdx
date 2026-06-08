@@ -1,0 +1,20 @@
+---
+title: Mapa mundial simples
+description: Configuração mínima de seleção única
+---
+
+<SimpleDemo />
+
+```tsx
+"use client";
+
+import { SingleSelectMap } from "@gurgelio/react-map";
+import world, { type WorldStates } from "@gurgelio/react-map/world";
+import { useState } from "react";
+
+export function MundoSimples() {
+  const [country, setCountry] = useState<WorldStates | null>(null);
+
+  return <SingleSelectMap map={world} value={country} onChange={setCountry} colors={{}} />;
+}
+```
