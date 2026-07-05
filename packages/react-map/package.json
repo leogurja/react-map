@@ -33,12 +33,22 @@
     "clean": "rm -rf node_modules dist .turbo",
     "dev": "tsdown --watch",
     "prepack": "turbo run build",
-    "typecheck": "tsc"
+    "check:types": "tsc",
+    "test": "vitest run",
+    "test:ui": "vitest --ui --coverage"
   },
   "devDependencies": {
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^25.9.1",
     "@types/react": "^19.2.16",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "@vitest/coverage-v8": "^4.1.9",
+    "@vitest/ui": "^4.1.9",
+    "jsdom": "^29.1.1",
     "tsdown": "^0.22.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

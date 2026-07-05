@@ -4,11 +4,7 @@
   "tags": ["-lintignore"],
   "workspaces": {
     "apps/docs": {
-      "entry": ["source.config.ts!"],
-      "ignoreDependencies": ["tailwindcss"]
-    },
-    "packages/react-map": {
-      "ignoreDependencies": ["react-dom"]
+      "entry": ["source.config.ts!"]
     }
   }
 }

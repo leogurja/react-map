@@ -22,7 +22,7 @@ export function KitchenSinkDemo() {
           map={world}
           value={selected}
           onChange={setSelected}
-          HintComponent={CountryHint}
+          Hint={CountryHint}
           pathStyle={({ state, isSelected, isHovered }) => {
             const hdi = countryStats[state]?.hdi;
             const fill = isSelected ? "#2563eb" : isHovered ? "#93c5fd" : hdiToColor(hdi);

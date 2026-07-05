@@ -1,7 +1,6 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  minify: true,
   dts: true,
   platform: "browser",
   target: "es2020",

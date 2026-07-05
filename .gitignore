@@ -1,12 +1,17 @@
-node_modules/
-dist/
-.turbo
-.vscode
-.next
-/coverage
-*.tsbuildinfo
-.source
-.DS_Store
-*.pem
-next-env.d.ts
+# directories
+.next/
 .pnpm-store/
+.turbo/
+.vscode/
+coverage/
+dist/
+node_modules/
+
+# files
+.DS_Store
+.source
+next-env.d.ts
+
+# file globs
+*.pem
+*.tsbuildinfo

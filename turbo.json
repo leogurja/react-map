@@ -1,13 +1,14 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "//#format": {
+    "//#check:format": {
       "outputLogs": "new-only"
     },
-    "//#knip": {
+    "//#check:knip": {
       "outputLogs": "new-only"
     },
-    "//#lint": {
+    "//#check:lint": {
+      "dependsOn": ["@gurgelio/react-map#build"],
       "outputLogs": "new-only"
     },
     "build": {
@@ -16,7 +17,7 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "check": {
-      "dependsOn": ["typecheck", "//#lint", "//#format", "//#knip"]
+      "dependsOn": ["check:types", "//#check:lint", "//#check:format", "//#check:knip"]
     },
     "clean": {
       "cache": false
@@ -25,8 +26,16 @@
       "cache": false,
       "persistent": true
     },
+    "test": {
+      "dependsOn": ["^test"],
+      "outputLogs": "new-only"
+    },
+    "test:ui": {
+      "cache": false,
+      "persistent": true
+    },
     "transit": {},
-    "typecheck": {
+    "check:types": {
       "dependsOn": ["^transit", "typegen"],
       "outputLogs": "new-only"
     },

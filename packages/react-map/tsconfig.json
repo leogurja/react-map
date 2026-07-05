@@ -17,8 +17,12 @@
     "module": "preserve",
     "noEmit": true,
     "lib": ["es2022", "dom", "dom.iterable"],
+    "types": ["node", "vitest"],
     "jsx": "react-jsx",
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }

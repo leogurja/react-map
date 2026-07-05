@@ -9,15 +9,15 @@
   "scripts": {
     "build": "turbo run build",
     "check": "turbo run check",
+    "check:format": "oxfmt .",
+    "check:knip": "knip",
+    "check:lint": "oxlint .",
+    "check:types": "turbo run check:types",
     "clean": "turbo clean && rm -rf node_modules $HOME/.cache/biome",
-    "dev": "turbo run dev",
-    "format": "oxfmt .",
-    "format:fix": "oxfmt --fix .",
-    "knip": "knip",
-    "lint": "oxlint .",
-    "lint:fix": "oxlint --fix .",
     "postclean": "pnpm i",
-    "typecheck": "turbo run typecheck"
+    "dev": "turbo run dev",
+    "format:fix": "oxfmt --fix .",
+    "lint:fix": "oxlint --fix ."
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

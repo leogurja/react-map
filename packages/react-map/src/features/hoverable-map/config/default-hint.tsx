@@ -1,12 +1,4 @@
-import type { HintProps, PathParams } from "./types";
-
-export function defaultPathStyle({ isHovered, isSelected }: PathParams): React.CSSProperties {
-  return {
-    fill: isHovered ? "#303030" : isSelected ? "#ff0000" : "white",
-    stroke: "black",
-    strokeWidth: 0.5,
-  };
-}
+import type { HintProps } from "@/features/hoverable-map/ui/hint";
 
 export function DefaultHint<T extends string>({ mouseX, mouseY, state }: HintProps<T>) {
   return (
